@@ -31,7 +31,7 @@ const StyledContainer = styled.div<Partial<ContainerProps>>`
   ${(props) =>
     props.$debug &&
     css`
-      margin: 1rem;
+      margin: 0.8rem;
       border: 1px dashed rgba(${props.$debugColor});
       background-color: rgba(${props.$debugColor}, 0.1);
     `};
