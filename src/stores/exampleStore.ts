@@ -4,6 +4,7 @@ import { createSelectors } from "./selectors";
 import { FilterObjectKeys } from "@customTypes/helpers";
 
 interface ExampleState {
+  debug: boolean;
   foo: number;
   bar: string;
   list: {
@@ -13,6 +14,7 @@ interface ExampleState {
 }
 
 const initState = {
+  debug: true,
   foo: 0,
   bar: "example",
   list: {
@@ -21,7 +23,7 @@ const initState = {
   },
 };
 
-// add createSelectors for easy access of props: useExampleStore.use.foo()
+// createSelectors function for easy access of props: useExampleStore.use.prop()
 export const useExampleStore = createSelectors(
   create<ExampleState>()(() => ({
     ...initState,

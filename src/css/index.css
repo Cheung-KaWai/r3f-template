@@ -18,7 +18,8 @@ body {
 
 #root {
   width: 100svw;
-  min-height: 100svh;
+  height: 100svh;
+  position: relative;
 }
 
 h1 {

@@ -3,6 +3,7 @@ import { StoreApi, UseBoundStore } from "zustand";
 
 type WithSelectors<S> = S extends { getState: () => infer T } ? S & { use: { [K in keyof T]: () => T[K] } } : never;
 
+// helper function to create .use.prop() selector for the zustand store instead of useStore.getState().prop or useStore((state)=>state.prop)
 export const createSelectors = <S extends UseBoundStore<StoreApi<object>>>(_store: S) => {
   const store = _store as WithSelectors<typeof _store>;
   store.use = {};
