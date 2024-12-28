@@ -20,7 +20,7 @@ const initState = {
   },
 };
 
-// add selectors for store for easy access of props
+// add createSelectors for easy access of props: useExampleStore.use.foo()
 export const useExampleStore = createSelectors(
   create<ExampleState>()(() => ({
     ...initState,
