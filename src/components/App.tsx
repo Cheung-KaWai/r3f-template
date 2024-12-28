@@ -1,19 +1,20 @@
-import { updateExampleStore, useExampleStore } from "@stores/exampleStore";
+import { updateNestedStore, updateStore, useExampleStore } from "@stores/exampleStore";
 import { useState } from "react";
 
 function App() {
   console.log("rerender");
   const [count, setCount] = useState(0);
-  const bar = useExampleStore.use.bar();
+  const bar = useExampleStore.use.list();
+  console.log(bar);
   const handleClick = () => {
-    updateExampleStore({ bar: "test" });
+    updateStore({ bar: "test" });
+    updateNestedStore("list", { param2: "hello world" });
     setCount((count) => count + 1);
   };
 
   return (
     <>
       <div className="card">
-        <h1>{bar}</h1>
         <h1>Hello World</h1>
         <h2>Hello World</h2>
         <h3>Hello World</h3>

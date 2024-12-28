@@ -33,7 +33,7 @@
       "@stores/*": ["stores/*"],
       "@data/*": ["data/*"],
       "@theme/*": ["theme/*"],
-      "@types/*": ["types/*"],
+      "@customTypes/*": ["types/*"],
       "@services/*": ["services/*"],
     }
   },

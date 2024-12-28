@@ -1,6 +1,7 @@
 import { create } from "zustand";
 import { mountStoreDevtool } from "simple-zustand-devtools";
 import { createSelectors } from "./selectors";
+import { FilterObjectKeys } from "@customTypes/helpers";
 
 interface ExampleState {
   foo: number;
@@ -28,8 +29,13 @@ export const useExampleStore = createSelectors(
 );
 
 // seperate actions from the store for easy import and usage
-export const updateExampleStore = (options: Partial<ExampleState>) => useExampleStore.setState(() => options);
-export const resetExampleStore = () => useExampleStore.setState(initState);
+export const resetStore = () => useExampleStore.setState(initState);
+export const updateStore = (updates: Partial<ExampleState>) => useExampleStore.setState(() => updates);
+export const updateNestedStore = <K extends FilterObjectKeys<ExampleState>>(key: K, updates: Partial<ExampleState[K]>) => {
+  useExampleStore.setState((state) => ({
+    [key]: { ...state[key], ...updates },
+  }));
+};
 
 // show store in devtools
 if (import.meta.env.MODE === "development") mountStoreDevtool("store", useExampleStore);
