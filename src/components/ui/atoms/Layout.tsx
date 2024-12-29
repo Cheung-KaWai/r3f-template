@@ -31,7 +31,6 @@ const LayoutContainer = styled.div<Partial<LayoutProps>>`
   align-items: ${(props) => props.$alignItems};
   justify-content: ${(props) => props.$justifyContent};
   gap: ${(props) => (props.$gap ? props.$gap + "rem" : null)};
-  border: 1px solid transparent;
   ${(props) =>
     props.$debug &&
     css`
@@ -48,7 +47,7 @@ const LayoutContainer = styled.div<Partial<LayoutProps>>`
         right: 4px;
         font-size: 6px;
         color: red;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         font-weight: 800;
       }
     `}

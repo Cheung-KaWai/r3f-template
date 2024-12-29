@@ -31,7 +31,6 @@ const StyledContainer = styled.div<Partial<ContainerProps>>`
   height: ${(props) => props.$height};
   flex-shrink: 0;
   flex-grow: ${(props) => props.$flexGrow};
-  border: 1px solid transparent;
   ${(props) =>
     props.$debug &&
     css`
@@ -47,7 +46,7 @@ const StyledContainer = styled.div<Partial<ContainerProps>>`
         right: 4px;
         font-size: 6px;
         color: red;
-        letter-spacing: 1px;
+        letter-spacing: 0.5px;
         font-weight: 800;
       }
     `};
