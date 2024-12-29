@@ -10,6 +10,8 @@ type ContainerProps = {
   $width: string;
   $height: string;
   $flexGrow: number;
+  $padding: string;
+  $border: string;
 };
 
 export const Container: FC<PropsWithChildren & Partial<ContainerProps>> = ({ children, ...rest }) => {
@@ -23,16 +25,30 @@ export const Container: FC<PropsWithChildren & Partial<ContainerProps>> = ({ chi
 };
 
 const StyledContainer = styled.div<Partial<ContainerProps>>`
-  position: ${(props) => props.$position};
+  padding: ${(props) => props.$padding ?? "0.8rem"};
+  position: ${(props) => props.$position ?? "relative"};
   width: ${(props) => props.$width};
   height: ${(props) => props.$height};
   flex-shrink: 0;
   flex-grow: ${(props) => props.$flexGrow};
+  border: 1px solid transparent;
   ${(props) =>
     props.$debug &&
     css`
       margin: 0.4rem;
       border: 1px dashed rgba(${props.$debugColor});
       background-color: rgba(${props.$debugColor}, 0.1);
+      &::after {
+        content: "Component: Container";
+        text-transform: uppercase;
+        display: block;
+        position: absolute;
+        bottom: 2px;
+        right: 4px;
+        font-size: 6px;
+        color: red;
+        letter-spacing: 1px;
+        font-weight: 800;
+      }
     `};
 `;
