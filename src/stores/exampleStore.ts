@@ -4,7 +4,10 @@ import { createSelectors } from "./selectors";
 import { FilterObjectKeys } from "@customTypes/helpers";
 
 interface ExampleState {
-  debug: boolean;
+  debug: {
+    enable: boolean;
+    details: boolean;
+  };
   foo: number;
   bar: string;
   list: {
@@ -14,7 +17,10 @@ interface ExampleState {
 }
 
 const initState = {
-  debug: import.meta.env.MODE === "development" ? true : false,
+  debug: {
+    enable: import.meta.env.MODE === "development",
+    details: true,
+  },
   foo: 0,
   bar: "example",
   list: {

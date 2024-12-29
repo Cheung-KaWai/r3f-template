@@ -1,22 +1,23 @@
+import { Debug } from "@customTypes/types";
 import { useExampleStore } from "@stores/exampleStore";
 import { getRandomColor } from "@utils/functions";
 import { FC, PropsWithChildren } from "react";
 import styled, { css } from "styled-components";
 
-type ContainerProps = {
-  $debug: boolean;
-  $debugColor: string;
+interface ContainerProps extends Debug {
   $position: "relative" | "absolute" | "fixed" | "sticky";
   $width: string;
   $height: string;
   $flexGrow: number;
   $padding: string;
   $border: string;
-};
+}
 
 export const Container: FC<PropsWithChildren & Partial<ContainerProps>> = ({ children, ...rest }) => {
+  const { enable, details } = useExampleStore.use.debug();
+
   return (
-    <StyledContainer $debug={useExampleStore.use.debug()} $debugColor={getRandomColor()} {...rest}>
+    <StyledContainer $debug={enable} $debugDetails={details} $debugColor={getRandomColor()} {...rest}>
       {children}
     </StyledContainer>
   );
@@ -33,11 +34,11 @@ const StyledContainer = styled.div<Partial<ContainerProps>>`
   ${(props) =>
     props.$debug &&
     css`
-      margin: 0.4rem;
+      margin: ${props.$debugDetails ? "0.4rem" : null};
       border: 1px dashed rgba(${props.$debugColor});
       background-color: rgba(${props.$debugColor}, 0.1);
       &::after {
-        content: "Container";
+        content: "${props.$debugDetails ? "Container" : ""}";
         white-space: nowrap;
         text-transform: uppercase;
         display: block;

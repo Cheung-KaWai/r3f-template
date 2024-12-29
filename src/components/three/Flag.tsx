@@ -20,7 +20,13 @@ export const Flag = () => {
   return (
     <mesh>
       <planeGeometry args={[1, 1, 10, 10]} />
-      <shaderMaterial uniforms={uniforms} vertexShader={vertex} fragmentShader={fragment} side={DoubleSide} wireframe={useExampleStore.use.debug()} />
+      <shaderMaterial
+        uniforms={uniforms}
+        vertexShader={vertex}
+        fragmentShader={fragment}
+        side={DoubleSide}
+        wireframe={useExampleStore.use.debug().enable}
+      />
     </mesh>
   );
 };

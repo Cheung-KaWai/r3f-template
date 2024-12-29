@@ -1,22 +1,21 @@
+import { Debug } from "@customTypes/types";
 import { useExampleStore } from "@stores/exampleStore";
 import { getRandomColor } from "@utils/functions";
 import { FC, PropsWithChildren } from "react";
 import styled, { css } from "styled-components";
 
-type LayoutProps = {
-  $debug: boolean;
-  $debugColor: string;
+interface LayoutProps extends Debug {
   $flexDirection: "row" | "row-reverse" | "column" | "column-reverse";
   $justifyContent: "flex-start" | "flex-end" | "center" | "space-between" | "space-around" | "space-evenly";
   $alignItems: "stretch" | "flex-start" | "flex-end" | "center" | "baseline";
   $gap: number;
-};
+}
 
 export const Layout: FC<PropsWithChildren & Partial<LayoutProps>> = ({ children, ...rest }) => {
-  const debug = useExampleStore.use.debug();
+  const { enable, details } = useExampleStore.use.debug();
 
   return (
-    <LayoutContainer $debug={debug} $debugColor={getRandomColor()} {...rest}>
+    <LayoutContainer $debug={enable} $debugDetails={details} $debugColor={getRandomColor()} {...rest}>
       {children}
     </LayoutContainer>
   );
@@ -34,12 +33,12 @@ const LayoutContainer = styled.div<Partial<LayoutProps>>`
   ${(props) =>
     props.$debug &&
     css`
-      padding: 0.8rem;
+      padding: ${props.$debugDetails ? "0.8rem" : null};
       border: 1px dashed rgba(${props.$debugColor});
       background-color: rgba(${props.$debugColor}, 0.1);
 
       &::after {
-        content: "Layout";
+        content: "${props.$debugDetails ? "Layout" : ""}";
         text-transform: uppercase;
         display: block;
         position: absolute;
