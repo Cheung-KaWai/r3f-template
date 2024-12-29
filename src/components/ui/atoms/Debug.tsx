@@ -9,5 +9,5 @@ export const Debug = () => {
     },
   });
 
-  return <Leva oneLineLabels collapsed hidden={import.meta.env.MODE === "production"} />;
+  return <Leva oneLineLabels collapsed />;
 };
