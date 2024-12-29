@@ -39,15 +39,15 @@ const LayoutContainer = styled.div<Partial<LayoutProps>>`
       background-color: rgba(${props.$debugColor}, 0.1);
 
       &::after {
-        content: "Component: Layout";
+        content: "Layout";
         text-transform: uppercase;
         display: block;
         position: absolute;
         bottom: 0;
-        right: 4px;
+        right: 0px;
         font-size: 6px;
         color: red;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
         font-weight: 800;
       }
     `}

@@ -15,16 +15,15 @@ type ContainerProps = {
 };
 
 export const Container: FC<PropsWithChildren & Partial<ContainerProps>> = ({ children, ...rest }) => {
-  const debug = useExampleStore.use.debug();
-
   return (
-    <StyledContainer $debug={debug} $debugColor={getRandomColor()} {...rest}>
+    <StyledContainer $debug={useExampleStore.use.debug()} $debugColor={getRandomColor()} {...rest}>
       {children}
     </StyledContainer>
   );
 };
 
 const StyledContainer = styled.div<Partial<ContainerProps>>`
+  display: block;
   padding: ${(props) => props.$padding ?? "0.8rem"};
   position: ${(props) => props.$position ?? "relative"};
   width: ${(props) => props.$width};
@@ -38,15 +37,16 @@ const StyledContainer = styled.div<Partial<ContainerProps>>`
       border: 1px dashed rgba(${props.$debugColor});
       background-color: rgba(${props.$debugColor}, 0.1);
       &::after {
-        content: "Component: Container";
+        content: "Container";
+        white-space: nowrap;
         text-transform: uppercase;
         display: block;
         position: absolute;
-        bottom: 2px;
-        right: 4px;
+        bottom: 0px;
+        right: 0px;
         font-size: 6px;
         color: red;
-        letter-spacing: 0.5px;
+        letter-spacing: 1px;
         font-weight: 800;
       }
     `};

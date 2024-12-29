@@ -5,7 +5,7 @@ import { Flag } from "./Flag";
 
 export const Scene = () => {
   return (
-    <Container $width="80svw">
+    <Container $width="70svw">
       <Canvas>
         <Flag />
         <CameraControls />
